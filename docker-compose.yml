@@ -7,7 +7,7 @@ services:
     volumes:
      - ./volumes/pg/data:/var/lib/postgresql/data
     environment:
-     - POSTGRES_PASSWORD=MY-SECRET-PASSWORD 
+     - POSTGRES_PASSWORD=newsreader 
      - POSTGRES_USER=newsreader 
      - POSTGRES_DB=newsleak
   newsleak-elasticsearch:
@@ -18,7 +18,12 @@ services:
     #  - "19200:9200"
     #  - "19300:9300"
   newsleak-ui:
-    image: "newsleak-frontend:latest"
+    image: "uhhlt/newsleak-frontend:v0.0.1"
+    volumes:
+     - ./volumes/ui:/etc/settings/
     ports:
      - "9000:9000"
     tty: true
+    depends_on:
+     - newsleak-postgres
+     - newsleak-elasticsearch
