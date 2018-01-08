@@ -1,0 +1,24 @@
+version: '3'
+services:
+  newsleak-postgres:
+    image: "postgres:9.6"
+    # ports:
+    #  - "15432:5432"
+    volumes:
+     - ./volumes/pg/data:/var/lib/postgresql/data
+    environment:
+     - POSTGRES_PASSWORD=MY-SECRET-PASSWORD 
+     - POSTGRES_USER=newsreader 
+     - POSTGRES_DB=newsleak
+  newsleak-elasticsearch:
+    image: "elasticsearch:2.4.6"
+    volumes:
+     - ./volumes/es/data:/usr/share/elasticsearch/data
+    # ports:
+    #  - "19200:9200"
+    #  - "19300:9300"
+  newsleak-ui:
+    image: "newsleak-frontend:latest"
+    ports:
+     - "9000:9000"
+    tty: true
