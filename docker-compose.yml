@@ -6,10 +6,8 @@ services:
     #  - "15432:5432"
     volumes:
      - ./volumes/pg/data:/var/lib/postgresql/data
-    environment:
-     - POSTGRES_PASSWORD=newsreader 
-     - POSTGRES_USER=newsreader 
-     - POSTGRES_DB=newsleak
+    env_file:
+     - postgres.env
   newsleak-elasticsearch:
     image: "elasticsearch:2.4.6"
     volumes:
