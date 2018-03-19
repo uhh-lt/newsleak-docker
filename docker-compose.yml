@@ -2,8 +2,8 @@ version: '3'
 services:
   newsleak-postgres:
     image: "postgres:9.6"
-    # ports:
-    #  - "15432:5432"
+#    ports:
+#     - "15432:5432"
     volumes:
      - ./volumes/pg/data:/var/lib/postgresql/data
     env_file:
@@ -12,9 +12,13 @@ services:
     image: "elasticsearch:2.4.6"
     volumes:
      - ./volumes/es/data:/usr/share/elasticsearch/data
-    # ports:
-    #  - "19200:9200"
-    #  - "19300:9300"
+#    ports:
+#     - "19200:9200"
+#     - "19300:9300"
+  newsleak-ner:
+    image: "uhhlt/newsleak-ner:v0.1"
+#    ports:
+#      - "5001:5001"
   newsleak-ui:
     image: "uhhlt/newsleak-frontend:v0.0.1"
     volumes:
@@ -25,3 +29,4 @@ services:
     depends_on:
      - newsleak-postgres
      - newsleak-elasticsearch
+     - newsleak-ner
