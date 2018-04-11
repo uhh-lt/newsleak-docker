@@ -1,7 +1,4 @@
 version: '2'
-# networks:
-#   hoover_default:
-#     external: true
 networks:
   default:
     external:
@@ -15,14 +12,10 @@ services:
      - ./volumes/pg/data:/var/lib/postgresql/data
     env_file:
      - postgres.env
-#    networks:
-#     - hoover_default
   newsleak-elasticsearch:
     image: "elasticsearch:2.4.6"
     volumes:
      - ./volumes/es/data:/usr/share/elasticsearch/data
-#    networks:
-#     - hoover_default
 #    ports:
 #     - "19200:9200"
 #     - "19300:9300"
@@ -31,14 +24,12 @@ services:
 #    ports:
 #      - "5001:5001"
   newsleak-ui:
-    image: "uhhlt/newsleak-frontend:v0.1"
+    image: "uhhlt/newsleak-frontend:v0.5"
     volumes:
      - ./volumes/ui:/etc/settings/
     ports:
      - "9000:9000"
     tty: true
-#    networks:
-#     - hoover_default
     depends_on:
      - newsleak-postgres
      - newsleak-elasticsearch

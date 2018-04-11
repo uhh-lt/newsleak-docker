@@ -19,18 +19,25 @@ Run docker-compose. You may want to edit the `postgres.env` file to setup your o
 docker-compose up -d
 ```
 
-Setup configuration. Edit `volumes/ui/newsleak.properties`. First, copy it to the volume location `./volumes/ui`
+Setup configuration. Edit `volumes/ui/newsleak.properties`. First, copy it to the volume location `./volumes/ui` and set write permissions.
 
 ```
-docker exec -it newsleakdocker_newsleak-ui_1 cp /opt/newsleak/preprocessing/conf/newsleak.properties /etc/settings
+docker exec -it newsleakdocker_newsleak-ui_1 cp -r /opt/newsleak/preprocessing/conf /etc/settings
+docker exec -it newsleakdocker_newsleak-ui_1 chmod -R 777 /etc/settings/conf
 ```
 
-Then, edit the file with your favorite text editor. You may use the example data or copy your own data files into the `volumes/ui` folder and point to them in the properties file. If you changed the db password in the previous step, change it in the properties file, too.
-
-Run information extraction.
+Then, edit the file with your favorite text editor.
 
 ```
-docker exec -it newsleakdocker_newsleak-ui_1 sh -c "cd /opt/newsleak/preprocessing && java -jar target/preprocessing-0.0.1-SNAPSHOT-jar-with-dependencies.jar -c /etc/settings/newsleak.properties"
+nano volumes/ui/newsleak.properties
+```
+
+You may use the example data or copy your own data files into the `volumes/ui` folder and point to them in the properties file. If you changed the db password in the previous step, change it in the properties file, too.
+
+Finally, run preprocessing for information extraction.
+
+```
+docker exec -it newsleakdocker_newsleak-ui_1 sh -c "cd /opt/newsleak/preprocessing && java -Xmx10g -jar target/preprocessing-0.5-jar-with-dependencies.jar -c /etc/settings/conf/newsleak.properties"
 ```
 
 Open the UI application in your browser
