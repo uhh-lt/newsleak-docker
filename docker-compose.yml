@@ -20,7 +20,7 @@ services:
 #    ports:
 #      - "5001:5001"
   newsleak-ui:
-    image: "uhhlt/newsleak-frontend:v0.0.1"
+    image: "uhhlt/newsleak-frontend:v0.5"
     volumes:
      - ./volumes/ui:/etc/settings/
     ports:
