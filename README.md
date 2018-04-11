@@ -29,7 +29,7 @@ docker exec -it newsleakdocker_newsleak-ui_1 chmod -R 777 /etc/settings/conf
 Then, edit the file with your favorite text editor.
 
 ```
-nano volumes/ui/newsleak.properties
+nano volumes/ui/conf/newsleak.properties
 ```
 
 You may use the example data or copy your own data files into the `volumes/ui` folder and point to them in the properties file. If you changed the db password in the previous step, change it in the properties file, too.
