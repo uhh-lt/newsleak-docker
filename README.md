@@ -33,6 +33,13 @@ nano volumes/ui/newsleak.properties
 
 You may use the example data or copy your own data files into the `volumes/ui` folder and point to them in the properties file. If you changed the db password in the previous step, change it in the properties file, too.
 
+Optional languages: The default NER service contains models for English and German. To install models for additional languages, run the following command. Adapt the language code of the model files to the language your need (ISO 639-1).
+
+```
+docker exec -t newsleakdocker_newsleak-ner_1 polyglot download embeddings2.es ner2.es
+```
+
+
 Finally, run preprocessing for information extraction.
 
 ```
