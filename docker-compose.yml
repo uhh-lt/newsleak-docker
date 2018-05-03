@@ -21,6 +21,8 @@ services:
 #     - "19300:9300"
   newsleak-ner:
     image: "uhhlt/newsleak-ner:v0.1"
+    volumes:
+     - ./volumes/ner:/root
 #    ports:
 #      - "5001:5001"
   newsleak-ui:
