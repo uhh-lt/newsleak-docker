@@ -20,7 +20,7 @@ services:
 #     - "19200:9200"
 #     - "19300:9300"
   newsleak-ner:
-    image: "uhhlt/newsleak-ner:v0.1"
+    image: "uhhlt/newsleak-ner:v1.0"
 #    ports:
 #      - "5001:5001"
   newsleak-ui:
