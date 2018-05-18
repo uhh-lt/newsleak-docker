@@ -26,8 +26,8 @@ Newsleak is closely integrated with [Hoover](https://hoover.github.io), a softwa
 1. Once Hoover is running, edit `volumes/ui/newsleak.properties` to configure newsleak. First, copy it to the volume location `./volumes/ui/conf` and set write permissions.
 
 ```
-docker exec -it newsleak-docker_newsleak-ui_1 cp -r /opt/newsleak/preprocessing/conf /etc/settings
-docker exec -it newsleak-docker_newsleak-ui_1 chmod -R 777 /etc/settings/conf
+docker exec -it newsleakdocker_newsleak-ui_1 cp -r /opt/newsleak/preprocessing/conf /etc/settings
+docker exec -it newsleakdocker_newsleak-ui_1 chmod -R 777 /etc/settings/conf
 ```
 
 2. Then, open the file with your favorite text editor, e.g. nano.
@@ -47,7 +47,7 @@ You also can use additional dictionaries to annotate your texts. Place dictionar
 3. Run preprocessing for information extraction.
 
 ```
-docker exec -it newsleak-docker_newsleak-ui_1 sh -c "cd /opt/newsleak/preprocessing && java -Xmx10g -jar target/preprocessing-0.9-jar-with-dependencies.jar -c /etc/settings/conf/newsleak.properties"
+docker exec -it newsleakdocker_newsleak-ui_1 sh -c "cd /opt/newsleak/preprocessing && java -Xmx10g -jar target/preprocessing-0.9-jar-with-dependencies.jar -c /etc/settings/conf/newsleak.properties"
 ```
 
 Open the UI application in your browser
@@ -60,5 +60,5 @@ http://localhost:9000
 ## Troubleshooting
 
 1. Not enough RAM: Preprocessing will be slow or even abort, if your Docker setup has not enough memory. Allow to use at least 8 GB.
-2. Different docker naming: docker-compose will use the directory name containing `docker-compose.yml` as a prefix for orchestrated containers. If you have placed it in a directory other than `newsleak-docker` you need to change the commands above accordingly.
+2. Different docker naming: docker-compose will use the directory name containing `docker-compose.yml` as a prefix for orchestrated containers (some special characters such as dashes are removed from the directory name beforehand). If you have placed it in a directory other than `newsleak-docker`, `mynewsleak` for instance, you need to change the commands above accordingly. Replace `newsleakdocker_newsleak-ui_1` with `mynewsleak_newsleak-ui_1` in steps 1 and 3.
   
