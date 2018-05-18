@@ -56,6 +56,23 @@ Open the UI application in your browser
 http://localhost:9000
 ```
 
+Login into the browser application with the credentials `user` and `password`. To set your own credentials, edit the file `application.conf` in the newsleak-ui container (see next section).
+
+## Security
+
+Newsleak is supposed to run on a local system or network without any internet connection to guarantee the confidentiality of your data. We strongly advise for the following procedding:
+
+With internet connection:
+
+1. Install the Hoover docker setup  and import the Hoover test collection.
+2. Install the Newsleak docker setup and import the testcollection extracted by Hoover.
+3. If everything works fine, disconnect form the internet.
+4. Copy your data to the Hoover collection directory.
+5. Import your as a new Hoover collection.
+6. Import the new Hoover collection into Newsleak.
+7. Set credentials for the newsleak app.
+8. Now you are fine analyzing your content.
+
 
 ## Troubleshooting
 
