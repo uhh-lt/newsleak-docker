@@ -13,7 +13,19 @@ git clone https://github.com/uhh-lt/newsleak-docker.git
 cd newsleak-docker
 ``` 
 
-Run docker-compose. You may want to edit the `postgres.env` file to setup your own db password.
+You may want to edit the `postgres.env` file to setup your own db password.
+
+```
+nano postgres.env
+```
+
+Set up docker network. Newsleak needs to see the Hoover docker containers. Thus change the network prefix of newsleak `hoover_default` to whatever your hoover network name is join the hoover network. The network name is usually derived from the directory your Hoover docker-setup resides in.
+
+```
+nano docker-compose.yml
+```
+
+Start containers.
 
 ```
 docker-compose up -d
@@ -77,5 +89,5 @@ With internet connection:
 ## Troubleshooting
 
 1. Not enough RAM: Preprocessing will be slow or even abort, if your Docker setup has not enough memory. Allow to use at least 8 GB.
-2. Different docker naming: docker-compose will use the directory name containing `docker-compose.yml` as a prefix for orchestrated containers (some special characters such as dashes are removed from the directory name beforehand). If you have placed it in a directory other than `newsleak-docker`, `mynewsleak` for instance, you need to change the commands above accordingly. Replace `newsleakdocker_newsleak-ui_1` with `mynewsleak_newsleak-ui_1` in steps 1 and 3.
-  
+2. Different docker container names: docker-compose will use the directory name containing `docker-compose.yml` as a prefix for orchestrated containers (some special characters such as dashes are removed from the directory name beforehand). If you have placed it in a directory other than `newsleak-docker`, `mynewsleak` for instance, you need to change the commands above accordingly. Replace `newsleakdocker_newsleak-ui_1` with `mynewsleak_newsleak-ui_1` in steps 1 and 3.
+3. Different docker network name: The newsleak docker containers need to share a virtual network with the Hoover containers. This is configured in the `docker-compose.yml` of newsleak. If your Hoover resides in a directory other tahn `hoover`, e.g. `hoover2`, then change the network name from `hoover_default` to `hoover2_default` and restart the containers `docker-compose restart`
