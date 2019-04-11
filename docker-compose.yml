@@ -2,7 +2,7 @@ version: '2'
 networks:
   default:
     external:
-      name: hoover2_default
+      name: hoover_default
 services:
   newsleak-postgres:
     image: "postgres:9.6"
@@ -30,6 +30,7 @@ services:
     ports:
      - "9000:9000"
     tty: true
+    container_name: newsleak
     depends_on:
      - newsleak-postgres
      - newsleak-elasticsearch

@@ -52,7 +52,7 @@ You also can use additional dictionaries to annotate your texts. Place dictionar
 3. Run preprocessing for information extraction.
 
 ```
-docker exec -it newsleakdocker_newsleak-ui_1 sh -c "cd /opt/newsleak/preprocessing && java -Xmx10g -jar preprocessing.jar -c /etc/settings/conf/newsleak.properties"
+docker exec -it newsleak sh -c "cd /opt/newsleak && java -Xmx10g -jar preprocessing.jar -c /etc/settings/conf/newsleak.properties"
 ```
 
 Open the UI application in your browser
