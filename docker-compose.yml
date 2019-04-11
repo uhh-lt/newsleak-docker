@@ -2,7 +2,7 @@ version: '2'
 networks:
   default:
     external:
-      name: hoover_default
+      name: hoover2_default
 services:
   newsleak-postgres:
     image: "postgres:9.6"
@@ -24,7 +24,7 @@ services:
 #    ports:
 #      - "5001:5001"
   newsleak-ui:
-    image: "uhhlt/newsleak-frontend:v1.0"
+    image: "uhhlt/newsleak:v1.0"
     volumes:
      - ./volumes/ui:/etc/settings/
     ports:
