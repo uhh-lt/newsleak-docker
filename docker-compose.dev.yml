@@ -2,10 +2,12 @@ version: '2'
 networks:
   default:
     external:
-      name: dockersetup_default
+      name: hoover2_default
 services:
   newsleak-postgres:
     image: "postgres:9.6"
+    ports:
+     - "15432:5432"
     volumes:
      - ./volumes/pg/data:/var/lib/postgresql/data
     env_file:
@@ -14,17 +16,10 @@ services:
     image: "elasticsearch:2.4.6"
     volumes:
      - ./volumes/es/data:/usr/share/elasticsearch/data
+    ports:
+     - "19200:9200"
+     - "19300:9300"
   newsleak-ner:
     image: "uhhlt/newsleak-ner:v1.0"
-  newsleak-ui:
-    image: "uhhlt/newsleak:v1.0"
-    volumes:
-     - ./volumes/ui:/etc/settings/
     ports:
-     - "9000:9000"
-    tty: true
-    container_name: newsleak
-    depends_on:
-     - newsleak-postgres
-     - newsleak-elasticsearch
-     - newsleak-ner
+     - "5001:5001"
